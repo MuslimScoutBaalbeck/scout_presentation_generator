@@ -1,0 +1,28 @@
+name: scout_presentation_generator
+description: Markdown-driven Flutter Deck presentation about scouting history.
+publish_to: none
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_deck: any
+  flutter_deck_ws_client: ^0.3.0
+  flutter_deck_pdf_export: any
+  flutter_deck_pptx_export: any
+  flutter_deck_web_client: any
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: any
+dependency_overrides:
+  archive: 4.0.7
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/markdown/scout_history.md
