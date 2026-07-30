@@ -6,6 +6,11 @@ import 'package:flutter_deck_pptx_export/flutter_deck_pptx_export.dart';
 import 'package:flutter_deck_ws_client/flutter_deck_ws_client.dart';
 import 'presentation/scout_markdown_slide.dart';
 
+const _deckWebSocketUri = String.fromEnvironment(
+  'DECK_WS_URI',
+  defaultValue: 'ws://127.0.0.1:8080',
+);
+
 class ScoutHistoryPresentationApp extends StatelessWidget {
   const ScoutHistoryPresentationApp({
     required this.isPresenterView,
@@ -50,7 +55,7 @@ class ScoutHistoryPresentationApp extends StatelessWidget {
         return FlutterDeckApp(
           isPresenterView: isPresenterView,
           client: FlutterDeckWsClient(
-            uri: Uri.parse('ws://localhost:8080'),
+            uri: Uri.parse(_deckWebSocketUri),
           ),
           lightTheme: FlutterDeckThemeData.light(),
           darkTheme: FlutterDeckThemeData.dark(),
@@ -65,10 +70,10 @@ class ScoutHistoryPresentationApp extends StatelessWidget {
               ),
             ),
             controls: FlutterDeckControlsConfiguration(
-              presenterToolbarVisible: !isPresenterView,
+              presenterToolbarVisible: false,
               gestures: FlutterDeckGesturesConfiguration.mobileOnly(),
               shortcuts: FlutterDeckShortcutsConfiguration(
-                enabled: true,
+                enabled: isPresenterView,
                 nextSlide: const {
                   SingleActivator(LogicalKeyboardKey.arrowRight),
                 },
